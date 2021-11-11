@@ -1,6 +1,7 @@
 <h1>New User</h1>
 
 <%= form_for @user do |f| %>
+  <%= render partial: 'layouts/errors', locals: { record: @user } %> 
     <%= f.label :email %>
     <%= f.email_field :email %>
     <br>
