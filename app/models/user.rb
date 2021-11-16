@@ -4,8 +4,9 @@ class User < ApplicationRecord
     
     has_secure_password
 
-    validates :email, uniqueness: true
     validates :email, presence: true
-
+    validates :email, uniqueness: { case_sensitive: false }
+    validates :parent_name, presence: true
+    validates :kid_name, presence: true
 
 end
