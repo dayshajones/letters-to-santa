@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
     def new
-
     end
 
     def create
@@ -15,9 +14,25 @@ class SessionsController < ApplicationController
         end
     end
 
-
     def logout
         session.clear
-        redirect_to new_user_path
+        redirect_to login_path
+    end
+
+    def omniauth
+        user = User.create_from_omniauth(auth)
+        if user.valid?
+            session[:user_id] = user.id
+            redirect_to letters_path
+        else
+            redirect_to login_path
+        end
+    end
+
+
+    private
+
+    def auth
+        request.env['omniauth.auth']
     end
 end
