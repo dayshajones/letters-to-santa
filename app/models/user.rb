@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
     validates :email, presence: true
     validates :email, uniqueness: { case_sensitive: false }
-    validates :parent_name, presence: true
-    validates :kid_name, presence: true
 
     def self.create_from_omniauth(auth)
         User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
