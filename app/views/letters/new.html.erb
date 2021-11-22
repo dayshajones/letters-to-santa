@@ -1,0 +1,10 @@
+<h1>New Letter</h1>
+
+<%= form_for(@letter) do |f|%>
+  <%= render partial: 'shared/errors', locals: { record: @letter } %> 
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <br>
+    <%= f.submit "Create Letter" %>
+  <% end %>
+  <br>
