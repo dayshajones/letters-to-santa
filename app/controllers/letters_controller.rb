@@ -1,11 +1,12 @@
 class LettersController < ApplicationController
 
     def index
-        @letter = Letter.all
+        @letters = Letter.all
     end
 
     def new
         @letter = Letter.new
+        @letter.build_elf
     end
 
     def create
@@ -30,10 +31,9 @@ class LettersController < ApplicationController
 
     end
 
-    private
+    private 
 
     def letter_params
-
+        params.require(:letter).permit(:content, :elf_id, elf_attributes: [:name])
     end
-
 end
