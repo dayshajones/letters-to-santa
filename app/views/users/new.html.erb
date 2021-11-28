@@ -1,5 +1,4 @@
 <h1>New User</h1>
-
 <%= form_for(@user) do |f|%>
   <%= render partial: 'shared/errors', locals: { record: @user } %> 
     <%= f.label :email %>
@@ -18,9 +17,10 @@
     <%= f.text_field :kid_name %>
     <br>
     <br>
-    <%= f.submit "Sign Up!" %>
+    <%= f.submit "Create User" %>
   <% end %>
   <br>
+
 
   <h3> Or Login with Google</h3>
   
