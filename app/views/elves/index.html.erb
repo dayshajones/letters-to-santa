@@ -1,7 +1,6 @@
 <h1>All Elves</h1>
-
-<ul>
-<% @elves.all.each do |elf| %> 
-    <li><%= link_to elf.name, elf_path(elf) %></li>
-<% end %>
-</ul>
+    <ul>
+        <% @elves.all.each do |elf| %> 
+            <li><%= link_to elf.name, elf_path(elf) %></li>
+        <% end %>
+    <ul>

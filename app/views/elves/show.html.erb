@@ -1,4 +1,9 @@
-<h1>Hi, it is me, <%= @elf.name %>!</h1>
+<h1>Hi, it's me, <%= @elf.name %>!</h1>
 
-<h4> <%= @elf.users %> </h4>
-
+<h2> Kids: </h3>
+    
+<ul>
+    <% @elf.letters.each do |letter| %>
+        <li> <%= letter.user.kid_name %> </li>
+    <% end %>
+</ul>
