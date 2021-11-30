@@ -2,12 +2,20 @@ class LettersController < ApplicationController
     before_action :redirect_if_not_logged_in
     
     def index
-        @letters = Letter.all
+        if params[:elf_id] && @elf = Elf.find(params[:elf_id])
+            @letters = @elf.letters
+        else
+            @letters = Letter.all
+        end
     end
 
     def new
-        @letter = Letter.new
-        @letter.build_elf
+        if params[:elf_id] && @elf = Elf.find(params[:elf_id])
+            @letter = Letter.new(elf_id: params[:elf_id])
+        else
+            @letter = Letter.new
+            @letter.build_elf
+        end
     end
 
     def create

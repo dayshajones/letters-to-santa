@@ -13,5 +13,4 @@ class User < ApplicationRecord
             u.password = SecureRandom.hex(16)
         end
     end
-
 end
