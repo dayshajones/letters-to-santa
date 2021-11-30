@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   # resources :letters
 
   resources :elves do
-    resources :letters
+    resources :letters, only: [:index, :new, :create]
   end
 end

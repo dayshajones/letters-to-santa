@@ -1,6 +1,7 @@
 class LettersController < ApplicationController
     before_action :redirect_if_not_logged_in
-    
+    before_action :find_letter, except: [:index, :new, :create]
+
     def index
         if params[:elf_id] && @elf = Elf.find(params[:elf_id])
             @letters = @elf.letters
@@ -19,9 +20,10 @@ class LettersController < ApplicationController
     end
 
     def create
+        @elf = Elf.find(params[:letter][:elf_id])
         @letter = current_user.letters.new(letter_params)
         if @letter.save
-            redirect_to letters_path, notice: "Letter has been added to your collection."
+            redirect_to letters_path
         else
             render :new
         end
@@ -31,7 +33,6 @@ class LettersController < ApplicationController
     end
 
     def update
-        find_letter
         @letter.update(letter_params)
         if @letter.valid?
             redirect_to letters_path

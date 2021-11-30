@@ -1,10 +1,11 @@
-<h1>Letters to Santa</h1>
-
-<ul>
-<% @letters.all.each do |letter| %> 
-    <li><%= link_to letter.user.email, letter_path(letter) %></li>
+<% if @elf %>
+    <h1><%= @elf.name %>'s Letters</h1>
+<% else %> 
+    <h1>All Letters</h1>
 <% end %>
-</ul>
 
+
+<%= render partial: "letter", collection: @letters, as: :l %>
+<br>
 
 <%= link_to "Create Letter", new_elf_letter_path %>

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         user = User.find_by_email(params[:email])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id 
-            redirect_to letters_path
+            redirect_to root_path
         else
             flash[:error] = "Invalid email or password"
             render "new"
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
         user = User.create_from_omniauth(auth)
         if user.valid?
             session[:user_id] = user.id
-            redirect_to letters_path
+            redirect_to root_path
         else
             redirect_to login_path
         end
