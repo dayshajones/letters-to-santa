@@ -23,7 +23,7 @@ class LettersController < ApplicationController
         @elf = Elf.find(params[:letter][:elf_id])
         @letter = current_user.letters.new(letter_params)
         if @letter.save
-            redirect_to letters_path
+            redirect_to elf_letters_path
         else
             render :new
         end
