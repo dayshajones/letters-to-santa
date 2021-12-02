@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => "sessions#omniauth"
   
   resources :users
-  # resources :letters
+  resources :letters, only: [:index, :new, :create]
 
   resources :elves do
-    resources :letters, only: [:index, :new, :create]
+    resources :letters, shallow: true
   end
 end

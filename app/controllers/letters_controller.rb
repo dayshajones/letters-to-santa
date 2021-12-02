@@ -10,24 +10,31 @@ class LettersController < ApplicationController
         end
     end
 
-    def new
-        if params[:elf_id] && @elf = Elf.find(params[:elf_id])
-            @letter = Letter.new(elf_id: params[:elf_id])
-        else
-            @letter = Letter.new
-            @letter.build_elf
+    def new 
+        if params[:elf_id]
+          @elf = Elf.find_by(id: params[:elf_id])
+          @letter = @elf.letters.build
+        else 
+          @letter = Letter.new
+          @letter.build_elf
         end
-    end
-
-    def create
-        @elf = Elf.find(params[:letter][:elf_id])
-        @letter = current_user.letters.new(letter_params)
-        if @letter.save
-            redirect_to elf_letters_path
-        else
-            render :new
-        end
-    end
+      end
+    
+      def create
+        if params[:elf_id]
+          @elf = Elf.find_by(id: params[:elf_id])
+          @letter = @elf.letters.build(letter_params)
+        else 
+          @letter = Letter.new(letter_params)
+        end 
+    
+        if @letter.save 
+          redirect_to elf_letters_path(@letter.elf)
+        else 
+          render :new
+        end 
+      end 
+    
 
     def edit
     end
@@ -52,7 +59,7 @@ class LettersController < ApplicationController
     private 
 
     def letter_params
-        params.require(:letter).permit(:content, :elf_id, elf_attributes: [:name])
+        params.require(:letter).permit(:content, :user_id, :elf_id, elf_attributes: [:name])
     end
 
     def find_letter

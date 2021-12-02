@@ -1,18 +1,22 @@
 <h1>New Letter</h1>
 <br>
-<h2>Dear Santa, </h2>
 
 <%= render partial: "shared/errors", locals: {record: @letter}  %>
+
 <%= form_for([@elf, @letter]) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.label(:content) %> 
   <%= f.text_area :content %><br></br>
-  <h3> Select an Elf: </h3>
-    <%= f.collection_select :elf_id, Elf.all, :id, :name %>
-
-  <h3> Or create a new elf: </h3>
-    <%= f.fields_for :elf do |e| %>
-      <%= e.label(:name) %>
-      <%= e.text_field :name %>
+  <% if @elf %>
+    <%= f.hidden_field :elf_id, value: @elf.id %>
+    <h4>Write a letter to Santa with help from <%= @elf.name%>! </h4>
+  <% else %>
+    <h3>Create a new elf: </h3>
+      <%= f.fields_for :elf do |e| %>
+        <%= e.label(:name) %>
+        <%= e.text_field :name %>
       <% end %>
+    <% end %>
     <%= f.submit %> 
+
 <% end %>
