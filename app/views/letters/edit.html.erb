@@ -7,11 +7,5 @@
   <%= f.text_area :content %><br></br>
   <h3> Select an Elf: </h3>
     <%= f.collection_select :elf_id, Elf.all, :id, :name %>
-
-  <h3> Or create a new elf: </h3>
-    <%= f.fields_for :elf do |e| %>
-      <%= e.label(:name) %>
-      <%= e.text_field :name %>
-      <% end %>
     <%= f.submit %> 
 <% end %>

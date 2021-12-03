@@ -4,6 +4,7 @@ class Elf < ApplicationRecord
     accepts_nested_attributes_for :letters
 
     validates :name, presence: true
+    validates :email, uniqueness: true
 
     def self.order_by_name
         order(:name)
