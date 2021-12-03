@@ -1,3 +1,9 @@
-<h1>Welcome, <%= @user.kid_name %>! </h1>
-
-<h2> Thank you, <%= @user.parent_name %> for signing up. </h2>
+<h1>Welcome <%= @user.kid_name %>! </h1>
+<br>
+<h3>Letters:</h3>
+<ul>
+    <% @user.letters.each do |letter| %>
+        <li> <%= letter.content %> </li>
+    <% end %>
+</ul>
+<br>

@@ -29,6 +29,8 @@ body {
     line-height: 1.7;
     color:   #feffff;
     background: url(/assets/christmas.jpg);
+    height: 100%
+    background-repeat :no-repeat;
     background-size: cover;
     padding: 30px;
 }

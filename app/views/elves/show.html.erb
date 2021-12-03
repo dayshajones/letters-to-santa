@@ -1,5 +1,9 @@
 <h1>Hi, it's me, <%= @elf.name %>!</h1>
 
+<p>Choose me to help you send a letter to Santa!</p>
+<%= link_to "Send a letter",  new_elf_letter_path(@elf) %>
+<br>
+
 <h2> Kids: </h3>
     
 <ul>
@@ -7,3 +11,4 @@
         <li> <%= letter.user.kid_name %> </li>
     <% end %>
 </ul>
+<br>
