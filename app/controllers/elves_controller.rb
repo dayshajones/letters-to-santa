@@ -1,7 +1,7 @@
 class ElvesController < ApplicationController
 
     def index
-        @elves = Elf.all
+        @elves = Elf.all.order_by_name
     end
 
     def show
