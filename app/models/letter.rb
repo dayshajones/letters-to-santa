@@ -9,5 +9,8 @@ class Letter < ApplicationRecord
             self.elf = Elf.find_or_create_by(hash_of_attributes)
         end
     end
+
+    scope :latest_letters, -> {order(created_at: :desc)}
+
     
 end

@@ -7,7 +7,7 @@ class LettersController < ApplicationController
       if params[:elf_id] && @elf = Elf.find(params[:elf_id])
           @letters = @elf.letters
       else
-          @letters = Letter.all
+          @letters = Letter.all.latest_letters
       end
   end
 
