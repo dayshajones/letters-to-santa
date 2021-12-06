@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#logout"
   get '/auth/:provider/callback' => "sessions#omniauth"
   
-  resources :users
+  resources :users, only: [:show, :new, :create]
   resources :letters, only: [:index, :new, :create]
 
-  resources :elves do
+  resources :elves, only: [:index, :new, :create, :show] do
     resources :letters, shallow: true
   end
 end

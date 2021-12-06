@@ -1,21 +1,18 @@
 <h1>New Letter</h1>
 <br>
 <%= render partial: "shared/errors", locals: {record: @letter}  %>
-
-<%= form_for([@elf, @letter]) do |f| %>
+<%=  form_with(model: [@elf, @letter]) do |f| %>
+  <%=  render partial: "form", locals: {form_builder: f, letter: @letter} %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.label(:content) %> 
-  <%= f.text_area :content %><br></br>
   <% if @elf %>
     <%= f.hidden_field :elf_id, value: @elf.id %>
     <h4>Write a letter to Santa with help from <%= @elf.name%>! </h4>
   <% else %>
     <h3>Create a new elf: </h3>
-      <%= f.fields_for :elf do |e| %>
-        <%= e.label(:name) %>
-        <%= e.text_field :name %>
+    <%= f.fields_for :elf do |e| %>
+      <%= e.label(:name) %>
+      <%= e.text_field :name %>
       <% end %>
     <% end %>
     <%= f.submit %> 
-
 <% end %>

@@ -1,7 +1,7 @@
 class LettersController < ApplicationController
     before_action :redirect_if_not_logged_in
     before_action :find_letter, except: [:index, :new, :create]
-    before_action :logged_in_user, only: [:edit, :update, :delete]
+    before_action :can_edit?, only: [:edit, :update, :delete]
 
   def index
       if params[:elf_id] && @elf = Elf.find(params[:elf_id])
@@ -47,8 +47,8 @@ class LettersController < ApplicationController
       end
   end
 
-    def show
-    end
+  def show
+  end
 
   def destroy
       @letter.destry
@@ -65,7 +65,7 @@ class LettersController < ApplicationController
         @letter = Letter.find(params[:id])
     end
 
-    def logged_in_user
+    def can_edit?
       unless current_user == @letter.user
         redirect_to login_path
       end

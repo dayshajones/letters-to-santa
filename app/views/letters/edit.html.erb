@@ -2,9 +2,9 @@
 <h2>Dear Santa, </h2>
 
 <%= render partial: "shared/errors", locals: {record: @letter}  %>
-<%= form_for([@elf, @letter]) do |f| %>
-  <%= f.label(:content) %> 
-  <%= f.text_area :content %><br></br>
+<%=  form_with(model: [@elf, @letter]) do |f| %>
+  <%=  render partial: "form", locals: {form_builder: f, letter: @letter} %>
+
   <h3> Select an Elf: </h3>
     <%= f.collection_select :elf_id, Elf.all, :id, :name %>
     <%= f.submit %> 
