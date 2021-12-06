@@ -1,9 +1,8 @@
 <h1>New Elf</h1>
 
 <%= form_for(@elf) do |f|%>
-  <%= render partial: 'shared/errors', locals: { record: @elf } %> 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <%= render partial: 'shared/errors', locals: { record: @elf } %>
+  <%= render partial: "form", locals: {f: f} %>
     <br>
     <%= f.submit "Create an Elf" %>
   <% end %>

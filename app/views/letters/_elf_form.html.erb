@@ -1,0 +1,5 @@
+<h3>Create a new elf: </h3>
+    <%= f.fields_for :elf do |e| %>
+      <%= e.label(:name) %>
+      <%= e.text_field :name %>
+      <% end %>
