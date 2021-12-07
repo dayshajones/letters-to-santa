@@ -1,21 +1,9 @@
 <h1>New Letter</h1>
 <br>
 <%= render partial: "shared/errors", locals: {record: @letter}  %>
-
 <%=  form_with(model: [@elf, @letter]) do |f| %>
   <%=  render partial: "form", locals: {f: f, letter: @letter} %>
-
   <%= f.hidden_field :user_id, value: current_user.id %>
-
-  <% if @elf %>
-    <%= f.hidden_field :elf_id, value: @elf.id %>
-    <h4>Write a letter to Santa with help from <%= @elf.name%>! </h4>
-  <% else %>
-    <h3>Create a new elf: </h3>
-    <%= f.fields_for :elf do |e| %>
-      <%= render partial: "elves/form", locals: {f: e} %>
-      <% end %>
-  <% end %>
-
+  <%= nested_form_conditional(f) %>
     <%= f.submit %> 
 <% end %>

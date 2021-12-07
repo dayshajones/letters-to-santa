@@ -1,9 +1,11 @@
 <h1>Welcome <%= @user.kid_name %>! </h1>
+<h2>My letters:</h2>
 <br>
-<h3>Letters:</h3>
-<ul>
-    <% @user.letters.each do |letter| %>
-        <li> <%= letter.content %> </li>
+    <dl><% @user.letters.each do |letter| %>
+        <dt><%= letter.content %></dt>
+            <dd>Elf: <%= letter.elf.name  %></dd>
+    </dl>
+    <br>
     <% end %>
-</ul>
+
 <br>

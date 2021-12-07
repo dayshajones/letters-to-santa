@@ -1,0 +1,4 @@
+<h4>Or create a new elf:</h4>
+<%= f.fields_for :elf do |elf_fields| %>
+    <%= render partial: "elves/form", locals: {f: elf_fields} %>
+<% end %>
