@@ -28,8 +28,9 @@ class LettersController < ApplicationController
       else 
         @letter = Letter.new(letter_params)
       end
+
       if @letter.save 
-        redirect_to elf_letters_path(@letter.elf)
+        redirect_to letter_path(@letter)
       else 
         render :new
       end 
@@ -51,7 +52,7 @@ class LettersController < ApplicationController
   end
 
   def destroy
-      @letter.destry
+      @letter.destroy
       redirect_to letters_path
   end
 

@@ -1,6 +1,6 @@
 <h1>New Elf</h1>
 
-<%= form_for(@elf) do |f|%>
+<%= form_with model: @elf do |f|%>
   <%= render partial: 'shared/errors', locals: { record: @elf } %>
   <%= render partial: "form", locals: {f: f} %>
     <br>

@@ -2,8 +2,9 @@
 <h2>My letters:</h2>
 <br>
     <dl><% @user.letters.each do |letter| %>
-        <dt><%= letter.content %></dt>
+        <dt><%= link_to letter.content, letter_path(letter) %></dt>
             <dd>Elf: <%= letter.elf.name  %></dd>
+            
     </dl>
     <br>
     <% end %>
